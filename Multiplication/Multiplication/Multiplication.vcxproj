@@ -140,7 +140,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Algorithm.cpp" />
+    <ClCompile Include="Calculator.cpp" />
+    <ClCompile Include="DS_timer.cpp" />
+    <ClCompile Include="FFT.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Karatsuba.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Naive.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Algorithm.h" />
+    <ClInclude Include="Calculator.h" />
+    <ClInclude Include="DS_definitions.h" />
+    <ClInclude Include="DS_timer.h" />
+    <ClInclude Include="FFT.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Karatsuba.h" />
+    <ClInclude Include="Naive.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,7 @@
-﻿  main.cpp
+﻿  Calculator.cpp
   코드를 생성하고 있습니다.
-  7 of 7 functions (100.0%) were compiled.
-    6 functions were new in current compilation
+  0 of 20 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   Multiplication.vcxproj -> \\Mac\Home\Desktop\mp\project\multiplication_multicore_programming\Multiplication\x64\Release\Multiplication.exe
