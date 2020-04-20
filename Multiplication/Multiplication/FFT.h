@@ -60,8 +60,6 @@ private:
 		return ret;
 	}
 
-	std::string vector_to_string(vector<int> vec);
-
 public:
 	virtual std::string get_parallel_result(std::string, std::string);
 	virtual std::string get_serial_result(std::string, std::string);
