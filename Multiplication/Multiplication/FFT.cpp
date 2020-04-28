@@ -1,14 +1,14 @@
 #include "FFT.h"
 
 
-string FFT::get_serial_result(string s1, string s2) {
+string FFT::get_serial_result(const string& s1, const string& s2) {
 	FFT::set_vector(s1, s2);
 	vector<int> result = serial_multiply(v1, v2);
 	return seial_get_result_from_vector(result);
 }
 
 
-string FFT::get_parallel_result(string s1, string s2) {
+string FFT::get_parallel_result(const string& s1, const string& s2) {
 	FFT::set_vector(s1, s2);
 	vector<int> result = parallel_multiply(v1, v2);
 	return parallel_get_result_from_vector(result);
