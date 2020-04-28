@@ -100,7 +100,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,6 +148,7 @@
     <ClCompile Include="Karatsuba.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Naive.cpp" />
+    <ClCompile Include="Record_function.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm.h" />
@@ -159,6 +159,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Karatsuba.h" />
     <ClInclude Include="Naive.h" />
+    <ClInclude Include="Record_function.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
