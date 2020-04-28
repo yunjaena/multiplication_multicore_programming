@@ -61,7 +61,7 @@ private:
 	}
 
 public:
-	virtual string get_parallel_result(string, string);
-	virtual string get_serial_result(string, string);
+	virtual string get_parallel_result(const string&, const string&);
+	virtual string get_serial_result(const string&, const string&);
 };
 
