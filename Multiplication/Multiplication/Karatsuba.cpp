@@ -43,7 +43,7 @@ void Karatsuba::set_vector(const string &s1, const string &s2) {
 
 void Karatsuba::normalize(vector<int> &num) {
 	num.push_back(0);
-	int n = num.size();
+	int n = num.size() - 1;
 
 	for (int i = 0; i < n; ++i) {
 		if (num[i] < 0) {
@@ -103,12 +103,14 @@ vector<int> Karatsuba::multiply(const vector<int> &a, const vector<int> &b) {
 }
 
 vector<int> Karatsuba::parallel_multiply(const vector<int> &a, const vector<int> &b) {
-	int an = a.size(), bn = b.size();
+	int an = a.size(), bn = b.size(), lim = an + bn - 1;
 	vector<int> ret(an + bn + 1, 0);
 	#pragma omp parallel for schedule(static, 1)
-	for (int i = 0; i < an + bn - 1; ++i)
-		for (int j = 0; j <= i; ++j)
+	for (int i = 0; i < lim; ++i) {
+		int lim2 = min(i, bn - 1);
+		for (int j = max(0, i - an + 1); j <= lim2; ++j)
 			ret[i] += a[i - j] * b[j];
+	}
 
 	normalize(ret);
 	return ret;

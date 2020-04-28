@@ -4,7 +4,6 @@
 #include <string>
 #include <algorithm>
 #include "Algorithm.h"
-using namespace std;
 
 class Karatsuba : public Algorithm
 {
