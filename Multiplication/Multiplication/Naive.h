@@ -24,7 +24,7 @@ private:
 	vector<int> v2;
 	typedef complex<double> base;
 
-	void set_vector(std::string s1, std::string s2);
+	void set_vector(string s1, string s2);
 
 	void serial_naive(vector<base>& a, bool inv);
 	vector<int> serial_multiply(vector<int>& A, vector<int>& B);
@@ -43,7 +43,7 @@ private:
 
 
 public:
-	virtual string get_parallel_result(std::string, std::string);
-	virtual string get_serial_result(std::string, std::string);
+	virtual string get_parallel_result(string, string);
+	virtual string get_serial_result(string, string);
 };
 

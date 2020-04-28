@@ -1,19 +1,19 @@
 #include "Naive.h"
 
-string Naive::get_serial_result(std::string s1, std::string s2) {
+string Naive::get_serial_result(string s1, string s2) {
 	Naive::set_vector(s1, s2);
 	vector<int> result = serial_multiply(v1, v2);
 	return result_from_vector(result);
 }
 
 
-string Naive::get_parallel_result(std::string s1, std::string s2) {
+string Naive::get_parallel_result(string s1, string s2) {
 	Naive::set_vector(s1, s2);
 	vector<int> result = parallel_multiply(v1, v2);
 	return result_from_vector(result);
 }
 
-void Naive::set_vector(std::string s1, std::string s2) {
+void Naive::set_vector(string s1, string s2) {
 	v1 = string_to_vi(s1);
 	v2 = string_to_vi(s2);
 	reverse(v1.begin(), v1.end());
