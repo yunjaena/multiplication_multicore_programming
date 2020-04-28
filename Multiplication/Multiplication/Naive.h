@@ -15,9 +15,7 @@
 #include <algorithm>
 #include "Algorithm.h"
 
-using namespace std;
-
-class Naive : Algorithm
+class Naive : public Algorithm
 {
 private:
 	vector<int> v1;
@@ -43,7 +41,7 @@ private:
 
 
 public:
-	virtual string get_parallel_result(string, string);
-	virtual string get_serial_result(string, string);
+	virtual string get_parallel_result(const string&, const string&);
+	virtual string get_serial_result(const string&, const string&);
 };
 
