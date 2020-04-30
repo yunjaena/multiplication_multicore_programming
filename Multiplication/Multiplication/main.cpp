@@ -1,5 +1,6 @@
 #include<iostream>
 #include<omp.h>
+#include<Windows.h>
 #include "Game.h"
 #define GAME_MODE 0
 #define CALCULATE_MODE 1
@@ -11,6 +12,7 @@ int main() {
 	int menu;
 	Game* game;
 	while (true) {
+		system("cls");
 		printf("모드를 선택해주세요. 게임 : 0 , 계산기 : 1, 종료 2\n");
 		scanf("%d", &menu);
 		switch (menu)

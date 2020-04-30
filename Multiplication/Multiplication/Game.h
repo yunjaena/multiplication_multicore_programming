@@ -3,6 +3,7 @@
 #include "Naive.h"
 #include "Algorithm.h"
 #include "DS_definitions.h"
+#include "ConsoleLogger.h"
 #include "DS_timer.h"
 #include <ctime>
 
@@ -11,6 +12,8 @@ class Game
 {
 private:
 	vector <pair<string, Algorithm*>> algorithm_vector;
+	CConsoleLogger secondConsole;
+
 	int min;
 public:
 	~Game();

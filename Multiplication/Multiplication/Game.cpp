@@ -89,15 +89,41 @@ void Game::play_game(int limit_second = 5){
 	}
 	Game::min = limit_second;
 	int number_length = 100;
+	bool isConsoleOuputMode = false;
+	int n;
 	stack<int> gameover_index;
 	stack<pair<string, float>> record;
+	
 
+	cout << endl << "Console Mode On : 0 Off : 1" << endl;
+	cin >> n;
+	isConsoleOuputMode = (n == 0) ? true : false;
 	clock_t start;
+
+	if(isConsoleOuputMode)
+	secondConsole.Create("Output");
+
 	while (algorithm_vector.size() >= 2) {
 		string a = get_number(number_length);
 		string b = get_number(number_length);
+
+		cout << "current length " << number_length << endl;
 		string answer = "";
-		cout << a << " X " << b << endl;
+
+		if (isConsoleOuputMode)
+		for (int i = 0; i < a.length() ; i++) {
+			secondConsole.printf("%c", a[i]);
+		}
+
+		if (isConsoleOuputMode)
+		secondConsole.printf(" X ");
+
+		if (isConsoleOuputMode)
+		for (int i = 0; i < b.length() ; i++) {
+			secondConsole.printf("%c", b[i]);
+		}
+
+
 		for (int i = 0; i < algorithm_vector.size(); i++) {
 			start = (int)clock();
 			if(algorithm_vector[i].second->is_serial())
@@ -106,8 +132,17 @@ void Game::play_game(int limit_second = 5){
 				answer = algorithm_vector[i].second->get_parallel_result(a, b);
 
 			float end = (float)(clock() - start) / CLOCKS_PER_SEC;
+			if (isConsoleOuputMode) {
+				secondConsole.printf("\n-----------------------------\n");
+				secondConsole.printf("answer => ");
 
-			cout<<"answer : " << answer << endl << "[" << algorithm_vector[i].first << "] "<<" => time" << end <<" s" << endl;
+				for (int i = 0; i < answer.length(); i++) {
+					secondConsole.printf("%c", answer[i]);
+				}
+
+				secondConsole.printf("\n-----------------------------\n");
+			}
+			cout << "[" << algorithm_vector[i].first << "] "<<" => time" << end <<" s" << endl;
 		
 			if (end > limit_second) {
 				cout << "time out!!!" << endl;
@@ -124,8 +159,11 @@ void Game::play_game(int limit_second = 5){
 			gameover_index.pop();
 		}
 
-		number_length += 10000;
-	
+		number_length += 100000;
+
+		if (isConsoleOuputMode)
+		secondConsole.Close();
+
 		system("cls");
 	}
 
@@ -159,9 +197,9 @@ void Game::remove_algorithm(int index) {
 }
 
 void Game::print_algorithm_list() {
-	cout << "---- algorithm list ----" << endl;
+	cout << "\n\n---- algorithm list ----" << endl;
 	for (int i = 0; i < algorithm_vector.size(); i++){
-		cout<< i << " : " << algorithm_vector[i].first << endl;
+		cout<< i << " : " << algorithm_vector[i].first << endl << endl;
 	}
 }
 
