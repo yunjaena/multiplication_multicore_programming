@@ -142,7 +142,7 @@ void Game::play_game(int limit_second = 5){
 
 				secondConsole.printf("\n-----------------------------\n");
 			}
-			cout << "[" << algorithm_vector[i].first << "] "<<" => time" << end <<" s" << endl;
+			cout << "[" << algorithm_vector[i].first << "] "<<" => time " << end <<" s" << endl;
 		
 			if (end > limit_second) {
 				cout << "time out!!!" << endl;
@@ -171,8 +171,9 @@ void Game::play_game(int limit_second = 5){
 		cout << "winner : " << algorithm_vector[0].first << endl;
 	}
 
+		int tempRanking = 1;
 		while (!record.empty()) {
-			cout << record.top().first << " : " << record.top().second<<" s " << endl;
+			cout <<"Rank : "<< tempRanking++ <<" => " <<record.top().first<< endl;
 			record.pop();
 		}
 		cout << endl;
