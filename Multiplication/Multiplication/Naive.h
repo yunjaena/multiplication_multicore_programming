@@ -20,6 +20,8 @@ class Naive : public Algorithm
 private:
 	vector<int> v1;
 	vector<int> v2;
+
+	int threads = 6;
 	typedef complex<double> base;
 
 	void set_vector(string s1, string s2);

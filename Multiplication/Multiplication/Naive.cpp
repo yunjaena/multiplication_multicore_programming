@@ -23,7 +23,6 @@ void Naive::set_vector(string s1, string s2) {
 
 vector<int> Naive::serial_multiply(vector<int>& A, vector<int>& B) {
     vector<int> res(A.size() + B.size());
-    int upper;
 
     if (A.size() > B.size()) {
         for (int i = 0; i < B.size(); i++) {
@@ -34,11 +33,13 @@ vector<int> Naive::serial_multiply(vector<int>& A, vector<int>& B) {
     }
     else {
         for (int i = 0; i < A.size(); i++) {
+            bool upper = false;
             for (int j = 0; j < B.size(); j++) {
                 res[j + i] += A[i] * B[j];
             }
         }
     }
+
 
     for (int i = 0; i < res.size(); i++) {
         if (res[i] >= 10) {
@@ -50,41 +51,85 @@ vector<int> Naive::serial_multiply(vector<int>& A, vector<int>& B) {
 
     reverse(res.begin(), res.end());
     return res;
-}
+    /*
+    vector<vector<int>> res(threads, vector<int>(A.size() + B.size(), 0));
+    vector<int> res_2(A.size() + B.size());
 
-vector<int> Naive::parallel_multiply(vector<int>& A, vector<int>& B) {
-    vector<int> res(A.size() + B.size());
-
-    int upper;
 
     if (A.size() > B.size()) {
-#pragma omp parallel for
-		for (int i = 0; i < B.size(); i++) {
-			for (int j = 0; j < A.size(); j++) {
-				res[j + i] += B[i] * A[j];
-			}
-		}
+        for (int i = 0; i < B.size(); i++) {
+            for (int j = 0; j < A.size(); j++) {
+                res[0][j + i] += B[i] * A[j];
+            }
+        }
     }
     else {
-#pragma omp parallel for
-		for (int i = 0; i < A.size(); i++) {
-			for (int j = 0; j < B.size(); j++) {
-				res[j + i] += A[i] * B[j];
-			}
-		}
-    }
-
-#pragma omp parallel for private(upper)
-    for (int i = 0; i < res.size(); i++) {
-        if (res[i] >= 10) {
-			int upper = res[i] / 10;
-			res[i] = res[i] % 10;
-			res[i + 1] += upper;
+        for (int i = 0; i < A.size(); i++) {
+            for (int j = 0; j < B.size(); j++) {
+                res[0][j + i] += A[i] * B[j];
+            }
         }
     }
 
-    reverse(res.begin(), res.end());
-    return res;
+    for (int i = 0; i < threads;i++) {
+        for (int j = 0; j < A.size() + B.size();j++) {
+            res_2[j] += res[i][j];
+        }
+    }
+
+    for (int i = 0; i < res_2.size(); i++) {
+        if (res_2[i] >= 10) {
+            int upper = res_2[i] / 10;
+            res_2[i] = res_2[i] % 10;
+            res_2[i + 1] += upper;
+        }
+    }
+
+    reverse(res_2.begin(), res_2.end());
+    return res_2;
+    */
+}
+
+vector<int> Naive::parallel_multiply(vector<int>& A, vector<int>& B) {
+    vector<vector<int>> res(threads, vector<int>(A.size() + B.size(), 0));
+    vector<int> res_2(A.size() + B.size());
+
+
+    if (A.size() > B.size()) {
+#pragma omp parallel for num_threads(threads) 
+        for (int i = 0; i < B.size(); i++) {
+            int tid = omp_get_thread_num();
+            for (int j = 0; j < A.size(); j++) {
+                res[tid][j + i] += B[i] * A[j];
+            }
+        }
+    }
+    else {
+#pragma omp parallel for num_threads(threads) 
+        for (int i = 0; i < A.size(); i++) {
+            int tid = omp_get_thread_num();
+            for (int j = 0; j < B.size(); j++) {
+                res[tid][j + i] += A[i] * B[j];
+            }
+        }
+    }
+
+    for (int i = 0; i < threads;i++) {
+        for (int j = 0; j < A.size() + B.size();j++) {
+            res_2[j] += res[i][j];
+        }
+    }
+
+    for (int i = 0; i < res_2.size(); i++) {
+        if (res_2[i] >= 10) {
+            int upper = res_2[i] / 10;
+            res_2[i] = res_2[i] % 10;
+            res_2[i + 1] += upper;
+        }
+    }
+
+    reverse(res_2.begin(), res_2.end());
+    return res_2;
 }
 
 
