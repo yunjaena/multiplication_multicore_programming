@@ -59,27 +59,27 @@ vector<int> Naive::parallel_multiply(vector<int>& A, vector<int>& B) {
 
     if (A.size() > B.size()) {
 #pragma omp parallel for
-        for (int i = 0; i < B.size(); i++) {
-            for (int j = 0; j < A.size(); j++) {
-                res[j + i] += B[i] * A[j];
-            }
-        }
+		for (int i = 0; i < B.size(); i++) {
+			for (int j = 0; j < A.size(); j++) {
+				res[j + i] += B[i] * A[j];
+			}
+		}
     }
     else {
 #pragma omp parallel for
-        for (int i = 0; i < A.size(); i++) {
-            for (int j = 0; j < B.size(); j++) {
-                res[j + i] += A[i] * B[j];
-            }
-        }
+		for (int i = 0; i < A.size(); i++) {
+			for (int j = 0; j < B.size(); j++) {
+				res[j + i] += A[i] * B[j];
+			}
+		}
     }
 
-#pragma omp parallel for
+#pragma omp parallel for private(upper)
     for (int i = 0; i < res.size(); i++) {
         if (res[i] >= 10) {
-            int upper = res[i] / 10;
-            res[i] = res[i] % 10;
-            res[i + 1] += upper;
+			int upper = res[i] / 10;
+			res[i] = res[i] % 10;
+			res[i + 1] += upper;
         }
     }
 

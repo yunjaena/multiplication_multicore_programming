@@ -1,7 +1,7 @@
 #include<iostream>
 #include<omp.h>
-#include<Windows.h>
 #include "Game.h"
+#include "Calculator.h"
 #define GAME_MODE 0
 #define CALCULATE_MODE 1
 #define EXIT 2
@@ -11,8 +11,8 @@ using namespace std;
 int main() {
 	int menu;
 	Game* game;
+	Calculator* calculator;
 	while (true) {
-		system("cls");
 		printf("모드를 선택해주세요. 게임 : 0 , 계산기 : 1, 종료 2\n");
 		scanf("%d", &menu);
 		switch (menu)
@@ -23,6 +23,9 @@ int main() {
 			delete game;
 			break;
 		case CALCULATE_MODE:
+			calculator = new Calculator();
+			calculator->show_menu();
+
 			break;
 		case EXIT:
 			printf("프로그램을 종료합니다.");
