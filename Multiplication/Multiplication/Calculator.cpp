@@ -75,7 +75,7 @@ void Calculator::execute() {
 void Calculator::show_menu() {
 	int n = -1;
 	while (true) {
-		cout << "1. insert algorithm 2. remove algorithm 3. algorithm list 4. Use Calculator 5. exit" << endl;
+		cout << "1. insert algorithm 2. remove algorithm 3. algorithm list 4. Use Calculator 5. Add Free text 6. exit" << endl;
 		cin >> n;
 		switch (n) {
 		case 1:
@@ -91,6 +91,9 @@ void Calculator::show_menu() {
 			use_calculator();
 			break;
 		case 5:
+			
+			break;
+		case 6:
 			return;
 			break;
 		}
