@@ -18,6 +18,15 @@ public:
 	void off_algorithm(int index);
 	void execute();
 
+	
+	void show_menu();
+	void show_remove_menu();
+	void show_insert_menu();
+
+	void insert_data();
+	void use_calculator();
+	void print_results(int k);
+
 private:
 	int umask;
 	string num1, num2;

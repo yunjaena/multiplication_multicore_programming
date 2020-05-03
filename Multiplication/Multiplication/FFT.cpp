@@ -97,16 +97,19 @@ vector<int> FFT::parallel_multiply(vector<int>& A, vector<int>& B) {
 
 	a.resize(n);	b.resize(n);
 	parallel_fft(a, false);	parallel_fft(b, false);
-#pragma omp parallel for
+
+	#pragma omp parallel for
 	for (int i = 0; i < n; i++) {
 		a[i] *= b[i];
 	}
 	parallel_fft(a, true);
 
 	vector<int> ret(n);
-#pragma omp parallel for
+
+	#pragma omp parallel for
 	for (int i = 0; i < n; i++)
 		ret[i] = (int)round(a[i].real());
+
 	return ret;
 }
 
