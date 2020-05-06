@@ -1,13 +1,14 @@
 #include "Record_function.h"
 
 void Record_function::record_fucntion(string vector_A, string vector_B, string output) {
-	int mode = 0;
+	int mode = 1;
 	int nf_mode = 0;
 	int f_mode = 0;
-	bool next = true;
+	bool next = false;
 	string file_name;
 	string file_contents;
-
+	
+	/*
 	while (next) {
 		printf("출력 = 0 | 계산결과 추가 = 1 | 자유 메모 작성 = 2 : ");
 		scanf_s("%d", &mode);
@@ -21,6 +22,8 @@ void Record_function::record_fucntion(string vector_A, string vector_B, string o
 		}
 		else next = false;
 	}
+	*/
+
 
 	while (!next) {
 		printf("파일 이름 입력 :  ");
@@ -31,36 +34,83 @@ void Record_function::record_fucntion(string vector_A, string vector_B, string o
 		filecheck.open(file_name);
 
 		if (!filecheck) {
-			if (mode == 0) {
-				cout << "'" + file_name + "'" + "과 같은 이름의 파일은 존재하지 않습니다! \n";
-				next = false;
-			}
-			else if (mode == 1) {
 				cout << "'" + file_name + "'" + "과 같은 이름의 파일은 존재하지 않습니다! \n";
 				cout << "새로운 파일을 생성하시겠습니까? (1 - Yes, others - No) : ";
 				scanf_s("%d", &nf_mode);
 				if (nf_mode == 1) next = true;
 				else next = false;
-			}
 		}
 		else next = true;
 	}
 
 	file_contents = read_file(file_name);
 
-	if (mode == 0) cout << file_contents + "\n";
-	else if (mode == 1) {
-		int m_mode = 0;
-		printf("추가적인 메모를 입력하시겠습니까? (1 - Yes, others - No) : ");
-		scanf_s("%d", &m_mode);
-		file_contents = write_file(file_name, file_contents, vector_A, vector_B, output);
+	int m_mode = 0;
+	printf("추가적인 메모를 입력하시겠습니까? (1 - Yes, others - No) : ");
+	scanf_s("%d", &m_mode);
+	file_contents = write_file(file_name, file_contents, vector_A, vector_B, output);
 
-		if (m_mode == 1) {
-			write_memo(file_name, file_contents, f_mode);
-		}
+	if (m_mode == 1) {
+		write_memo(file_name, file_contents, f_mode);
 	}
-	else if (mode == 2) write_memo(file_name, file_contents, f_mode);
 }
+
+void Record_function::print_file() {
+	bool next = false;
+	string file_name;
+
+	while (!next) {
+		printf("파일 이름 입력 :  ");
+		cin >> file_name;
+		file_name += ".txt";
+
+		ifstream filecheck;
+		filecheck.open(file_name);
+
+		if (!filecheck) {
+				cout << "'" + file_name + "'" + "과 같은 이름의 파일은 존재하지 않습니다! \n";
+				next = false;
+		}
+		else next = true;
+	}
+	string file_contents = read_file(file_name);
+
+	cout << file_contents + "\n";
+}
+
+void Record_function::write_free_memo() {
+	bool next = false;
+	int nf_mode = 0;
+	string file_name;
+	string file_contents;
+
+	while (!next) {
+		printf("파일 이름 입력 :  ");
+		cin >> file_name;
+		file_name += ".txt";
+
+		ifstream filecheck;
+		filecheck.open(file_name);
+
+		if (!filecheck) {
+			cout << "'" + file_name + "'" + "과 같은 이름의 파일은 존재하지 않습니다! \n";
+			cout << "새로운 파일을 생성하시겠습니까? (1 - Yes, others - No) : ";
+			scanf_s("%d", &nf_mode);
+			if (nf_mode == 1) next = true;
+			else next = false;
+		}
+		else next = true;
+	}
+
+	file_contents = read_file(file_name);
+
+		write_memo(file_name, file_contents, 1);
+
+
+}
+
+
+
 
 string Record_function::read_file(string fname) {
 

@@ -47,7 +47,8 @@ void Calculator::off_algorithm(int index) {
 	}
 }
 
-void Calculator::execute() {
+string Calculator::execute() {
+	string res;
 	DS_timer timer(6);
 	for (int i = 0, j = 0; i < 6; ++i) {
 		if (umask & 1 << i) continue;
@@ -56,13 +57,13 @@ void Calculator::execute() {
 		//timer.onTimer(i);
 		if (i & 1) {
 			timer.onTimer(i);
-			algorithm[i]->get_parallel_result(num1, num2);
+			res = algorithm[i]->get_parallel_result(num1, num2);
 			timer.offTimer(i);
 			print_results(i);
 		}
 		else {
 			timer.onTimer(i);
-			algorithm[i]->get_serial_result(num1, num2);
+			res = algorithm[i]->get_serial_result(num1, num2);
 			timer.offTimer(i);
 			print_results(i);
 		}
@@ -70,12 +71,13 @@ void Calculator::execute() {
 	}
 
 	timer.printTimer();
+	return res;
 }
 
 void Calculator::show_menu() {
 	int n = -1;
 	while (true) {
-		cout << "1. insert algorithm 2. remove algorithm 3. algorithm list 4. Use Calculator 5. Add Free text 6. exit" << endl;
+		cout << "1. insert algorithm 2. remove algorithm 3. algorithm list 4. Use Calculator 5. Add Free text 6. Print text file 7. exit" << endl;
 		cin >> n;
 		switch (n) {
 		case 1:
@@ -91,9 +93,12 @@ void Calculator::show_menu() {
 			use_calculator();
 			break;
 		case 5:
-			
+			record.write_free_memo();
 			break;
 		case 6:
+			record.print_file();
+			break;
+		case 7:
 			return;
 			break;
 		}
@@ -147,12 +152,21 @@ void Calculator::show_remove_menu() {
 }
 
 void Calculator::use_calculator() {
+	string results;
 	insert_data();
 	cout << num1 << " * " << num2 << endl;
-	execute();
-	
+	results = execute();
+	int k;
+	cout << "결과를 저장하시겠습니까? (1 : Yes, 0 or else : No) ";
+	scanf_s("%d", &k);
 
+	if (k == 1) {
+		cout << k << endl;
+		record.record_fucntion(num1, num2, results);
+	}
+	else return;
 }
+
 
 void Calculator::insert_data() {
 	cout << "s1 값을 입력하세요 : ";
