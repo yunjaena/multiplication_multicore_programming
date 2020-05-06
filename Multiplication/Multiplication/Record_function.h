@@ -30,10 +30,10 @@ private:
 	string write_file(string fname, string f_contents, string A, string B, string op);
 	
 	void write_memo(string fname, string f_contents, bool free);
-	
-	
 
 
 public:
 	void record_fucntion(string vector_A, string vector_B, string output);
+	void print_file();
+	void write_free_memo();
 };

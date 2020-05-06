@@ -5,6 +5,8 @@
 #include "FFT.h"
 #include "DS_definitions.h"
 #include "DS_timer.h"
+#include "Record_function.h"
+
 using namespace std;
 
 class Calculator
@@ -12,11 +14,13 @@ class Calculator
 public:
 	Calculator();
 	~Calculator();
+	Record_function record;
+
 	void set_number(const string& s1, const string& s2);
 	void print_algorithm_list();
 	void on_algorithm(int index);
 	void off_algorithm(int index);
-	void execute();
+	string execute();
 
 	
 	void show_menu();

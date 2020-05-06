@@ -51,43 +51,7 @@ vector<int> Naive::serial_multiply(vector<int>& A, vector<int>& B) {
 
     reverse(res.begin(), res.end());
     return res;
-    /*
-    vector<vector<int>> res(threads, vector<int>(A.size() + B.size(), 0));
-    vector<int> res_2(A.size() + B.size());
-
-
-    if (A.size() > B.size()) {
-        for (int i = 0; i < B.size(); i++) {
-            for (int j = 0; j < A.size(); j++) {
-                res[0][j + i] += B[i] * A[j];
-            }
-        }
-    }
-    else {
-        for (int i = 0; i < A.size(); i++) {
-            for (int j = 0; j < B.size(); j++) {
-                res[0][j + i] += A[i] * B[j];
-            }
-        }
-    }
-
-    for (int i = 0; i < threads;i++) {
-        for (int j = 0; j < A.size() + B.size();j++) {
-            res_2[j] += res[i][j];
-        }
-    }
-
-    for (int i = 0; i < res_2.size(); i++) {
-        if (res_2[i] >= 10) {
-            int upper = res_2[i] / 10;
-            res_2[i] = res_2[i] % 10;
-            res_2[i + 1] += upper;
-        }
-    }
-
-    reverse(res_2.begin(), res_2.end());
-    return res_2;
-    */
+   
 }
 
 vector<int> Naive::parallel_multiply(vector<int>& A, vector<int>& B) {
