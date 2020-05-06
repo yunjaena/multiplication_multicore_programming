@@ -161,8 +161,7 @@ void Game::play_game(int limit_second = 5){
 
 		number_length += 100000;
 
-		if (isConsoleOuputMode)
-		secondConsole.Close();
+		
 
 		system("cls");
 	}
@@ -178,6 +177,7 @@ void Game::play_game(int limit_second = 5){
 		cout << endl;
 		getchar();
 		getchar();
+		if (isConsoleOuputMode) secondConsole.Close();
 	
 }
 
