@@ -162,7 +162,7 @@ void Calculator::use_calculator() {
 
 	if (k == 1) {
 		cout << k << endl;
-		record.record_fucntion(num1, num2, results);
+		record.record_function(num1, num2, results);
 	}
 	else return;
 }
