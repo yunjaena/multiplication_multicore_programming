@@ -33,7 +33,6 @@ vector<int> Naive::serial_multiply(vector<int>& A, vector<int>& B) {
     }
     else {
         for (int i = 0; i < A.size(); i++) {
-            bool upper = false;
             for (int j = 0; j < B.size(); j++) {
                 res[j + i] += A[i] * B[j];
             }

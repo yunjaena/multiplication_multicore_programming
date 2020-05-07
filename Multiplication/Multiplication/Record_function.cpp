@@ -8,22 +8,6 @@ void Record_function::record_fucntion(string vector_A, string vector_B, string o
 	string file_name;
 	string file_contents;
 	
-	/*
-	while (next) {
-		printf("출력 = 0 | 계산결과 추가 = 1 | 자유 메모 작성 = 2 : ");
-		scanf_s("%d", &mode);
-		if (mode > 2) {
-			printf("잘못된 입력\n");
-			next = true;
-		}
-		else if (mode == 2) {
-			f_mode = 1;
-			next = false;
-		}
-		else next = false;
-	}
-	*/
-
 
 	while (!next) {
 		printf("파일 이름 입력 :  ");
