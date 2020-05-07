@@ -1,6 +1,6 @@
 #include "Record_function.h"
 
-void Record_function::record_fucntion(string vector_A, string vector_B, string output) {
+void Record_function::record_function(string vector_A, string vector_B, string output) {
 	int mode = 1;
 	int nf_mode = 0;
 	int f_mode = 0;
