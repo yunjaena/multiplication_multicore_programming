@@ -71,7 +71,7 @@ void Game::show_menu() {
 			break;
 		case 4:
 			time = 5;
-			cout << "input linit second : ";
+			cout << "input limit second : ";
 			cin >> time;
 			play_game(time);
 			return;
